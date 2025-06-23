@@ -1,0 +1,37 @@
+ html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container-fluid {
+    min-height: 100vh;
+    height: 100%;
+}
+.main-caisse {
+    height: 100%;
+}
+
+.bgdefaut{
+  background-color: rgb(48, 52, 86);
+}
+
+ 
+ .left-column {
+   display: flex;
+   flex-direction: column;
+ }
+
+ .left-block {
+   flex: 1;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #f8f9fa;
+ }
+
+ .h200 {height: 200px;
+ }
+ .bloc-dolibarr{
+  padding: 50px;
+  cursor: pointer;
+ }
