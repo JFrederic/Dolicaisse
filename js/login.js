@@ -10,8 +10,6 @@ function loginMagasin() {
     .then(r => r.json())
     .then(res => {
         // Affiche la réponse brute dans la console pour debug
-        console.log('Réponse fetch:', res);
-        
         if(res.success) {
             // Stocker éventuellement en localStorage pour rechargement si besoin
             localStorage.setItem('entrepot_id', res.entrepot_id);
@@ -23,3 +21,4 @@ function loginMagasin() {
         }
         });
     }
+
