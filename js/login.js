@@ -1,7 +1,7 @@
 function loginMagasin() {
     let code = document.getElementById('inputCodeMagasin').value.trim();
     console.log('Code entré:', code);
-    fetch('/api/login.php', {
+    fetch('../api/login.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ code: code })
