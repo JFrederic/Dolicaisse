@@ -109,7 +109,9 @@
    white-space: normal;
    text-align: center;
  }
-
+#clients-result, #create-client-form {
+  transition: all 0.3s;
+}
  @media (max-width: 1024px) {
    .left-block {
      height: 100px;

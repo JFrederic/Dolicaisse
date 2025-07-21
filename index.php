@@ -70,7 +70,7 @@ require_once 'template/includes.php';
                                 <div class="col-12 mt-3">
                                     <div class="card-body" style="border:3px solid #ffffff ;border-radius:10px; background-color: rgb(0, 0, 139);color:#ffffff;
                     padding: 0 15px !important;">
-                                        <p id="total" class="float-right montant-total">0.00 €</p>
+                                        <p id="total" class="float-right montant-total">175.02 €</p>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-3">
@@ -82,18 +82,18 @@ require_once 'template/includes.php';
                                                 </button>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="button" class="btn btn-primary btn-lg w-100 btnCaisse" data-bs-toggle="modal" data-bs-target="#modal-cb" id="paiementCB">
+                                                <button type="button" class="btn btn-primary btn-lg w-100 btnCaisse" id="paiementCB" onclick="showModalPaiement('CB')" >
                                                     CB
                                                 </button>
                                             </div>
 
                                             <div class="col-md-6">
-                                                <button type="button" class="btn btn-primary btn-lg w-100 btnCaisse text-white" data-bs-toggle="modal" data-bs-target="#modal-cheque" id="paiementCheque">
+                                                <button type="button" class="btn btn-primary btn-lg w-100 btnCaisse text-white" id="paiementCheque" onclick="showModalPaiement('Chèque')">
                                                     Chèques
                                                 </button>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="button" class="btn btn-success btn-lg w-100 btnCaisse" data-bs-toggle="modal" data-bs-target="#modal-espece" id="paiementEspece">
+                                                <button type="button" class="btn btn-success btn-lg w-100 btnCaisse" id="paiementEspece" onclick="showModalPaiement('Espèces')">
                                                     Espèces
                                                 </button>
                                             </div>
