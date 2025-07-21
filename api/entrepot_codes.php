@@ -1,8 +1,16 @@
-
 <?php
+// api/entrepot_codes.php
 
 return [
-    // Format : [warehouseId][code]
-    1 => ['xy98zt'],  // Codes autorisés pour Saint-Denis (id 1)
-    2 => ['mn56op']   // Codes autorisés pour Saint-Louis (id 2)
+    // id => [ 'nom' => ..., 'codes' => [...] ]
+    'XY98ZT' => [
+        'nom' => 'Saint-Denis',
+        'id' => 3,
+        'entrepot' => 2
+    ],
+    'MN56OP' => [
+        'nom' => 'Saint-Louis',
+        'id' => 2,
+        'entrepot' => 1
+    ]
 ];
