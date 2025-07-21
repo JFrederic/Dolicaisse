@@ -1,7 +1,7 @@
 function loginMagasin() {
     let code = document.getElementById('inputCodeMagasin').value.trim();
     console.log('Code entré:', code);
-    var url = 'api/login.php';
+    var url = window.origin + '/Dolicaisse/api/login.php';
     fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
