@@ -5,7 +5,7 @@ require_once 'template/includes.php';
 
 
 if (empty($_SESSION['entrepot_id'])) {
-    header('Location: /login.php');
+    header('Location: /connexion.php');
     exit;
 }
 ?>
