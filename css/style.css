@@ -1,21 +1,25 @@
- html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-.container-fluid {
-    min-height: 100vh;
-    height: 100%;
-}
-.main-caisse {
-    height: 100%;
-}
+ html,
+ body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
 
-.bgdefaut{
-  background-color: rgb(48, 52, 86);
-}
+ }
 
- 
+ .container-fluid {
+   /* min-height: 100vh; */
+   height: 100%;
+ }
+
+ .main-caisse {
+   height: 100%;
+ }
+
+ .bgdefaut {
+   background-color: rgb(48, 52, 86);
+ }
+
+
  .left-column {
    display: flex;
    flex-direction: column;
@@ -29,51 +33,170 @@
    background-color: #f8f9fa;
  }
 
- .h200 {height: 200px;
- }
- .bloc-dolibarr{
-  padding: 50px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+ .h200 {
+   height: 200px;
  }
 
-/* CSS POUR LE PANIER */
- .caddie > .card-header > .card-title{
-    font-size: 25px;
-    font-weight: 400;
-    float: left;
-    color:#fff;
-    
- }
- .caddie > .card-header{
-  background-color: rgb(70, 130, 180);;
- }
- .caddie > .card-header > .btnMultiplePanier{
-  float: right;
-  font-size: 20px;
-  color: white;
+ .bloc-dolibarr {
+   padding: 50px;
+   cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
  }
 
- .caddie > .card-body{
-  background-color: rgb(242, 247, 251);
-  padding: 10px;
+ /* CSS POUR LE PANIER */
+ .caddie>.card-header>.card-title {
+   font-size: 25px;
+   font-weight: 400;
+   float: left;
+   color: #fff;
 
  }
- .col-designation{
-  width: 40%;
+
+ .caddie>.card-header {
+   background-color: rgb(70, 130, 180);
  }
+
+ .caddie>.card-header>.btnMultiplePanier {
+   float: right;
+   font-size: 20px;
+   color: white;
+ }
+
+ .caddie>.card-body {
+   background-color: rgb(242, 247, 251);
+   padding: 0;
+   height: 760px;
+ }
+
+ .col-designation {
+   width: 40%;
+ }
+
+ .entete {
+   background-color: rgb(242, 247, 251) !important;
+   font-size: 20px !important;
+   padding: 10px !important;
+   font-weight: 400;
+   /* border-bottom: 1px solid #ddd; */
+ }
+
+ /* CSS POUR LE PANIER */
+ .paiement-caisse {
+   background-color: rgb(242, 247, 251);
+   border-left: 1px solid #fff;
+ }
+
+ .montant-total {
+   font-size: 50px;
+   font-weight: 800;
+   font-family: 'Tahoma';
+   text-align: right;
+ }
+
+ .btnCaisse {
+   aspect-ratio: 1 / 1;
+   /* bouton carré */
+   height: 120px;
+   /* hauteur fixe */
+   font-size: 1.2rem;
+   /* texte plus grand */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   white-space: normal;
+   text-align: center;
+ }
+#clients-result, #create-client-form {
+  transition: all 0.3s;
+}
+ @media (max-width: 1024px) {
+   .left-block {
+     height: 100px;
+   }
+
+   .bloc-dolibarr {
+     padding: 20px;
+   }
+
+   .bloc-dolibarr h3 {
+     font-size: 1.2rem;
+   }
+
+   .entete {
+     background-color: rgb(242, 247, 251) !important;
+     font-size: 17px !important;
+     padding: 5px !important;
+     /* border-bottom: 1px solid #ddd; */
+   }
+ }
+
  @media (max-width: 768px) {
    .left-block {
      height: 100px;
    }
-   .bloc-dolibarr{
-    padding: 20px;
+
+   .bloc-dolibarr {
+     padding: 20px;
    }
 
    .bloc-dolibarr h3 {
-    font-size: 1.2rem;
+     font-size: 1.2rem;
    }
+
+   .entete {
+     background-color: rgb(242, 247, 251) !important;
+     font-size: 14px !important;
+     padding: 5px !important;
+     /* border-bottom: 1px solid #ddd; */
+   }
+ }
+
+ @media (min-height: 768px) and (max-width: 1366px) {
+   .left-block {
+     height: 150px;
+   }
+
+   .bloc-dolibarr {
+     padding: 30px;
+   }
+
+   .bloc-dolibarr {
+     padding: 25px;
+     cursor: pointer;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+   }
+
+   .btnCaisse {
+     aspect-ratio: 1 / 1;
+     /* bouton carré */
+     height: 60px;
+     /* hauteur fixe */
+     font-size: 1.2rem;
+     /* texte plus grand */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     white-space: normal;
+     text-align: center;
+   }
+
+   .caddie>.card-body {
+     background-color: rgb(242, 247, 251);
+     padding: 0;
+     height: 490px;
+   }
+
+   .entete {
+     background-color: rgb(242, 247, 251) !important;
+     font-size: 18px !important;
+     padding: 8px !important;
+     /* border-bottom: 1px solid #ddd; */
+   }
+
  }
