@@ -1,7 +1,7 @@
 function loginMagasin() {
     let code = document.getElementById('inputCodeMagasin').value.trim();
     console.log('Code entré:', code);
-    var url = window.origin + '/Dolicaisse/api/login.php';
+    var url = window.origin + '/dolicaisse/api/login.php';
     fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -17,7 +17,7 @@ function loginMagasin() {
             localStorage.setItem('entrepot_id', res.entrepot_id);
             document.getElementById('loginMsg').innerHTML = '<span class="text-success">Connexion réussie (entrepôt ' + res.entrepot_id + ')</span>';
             // Rediriger ou afficher la caisse
-            window.location.href = window.origin + '/Dolicaisse/index.php';
+            window.location.href = window.origin + '/dolicaisse/index.php';
         } else {
             document.getElementById('loginMsg').innerHTML = '<span class="text-danger">Code invalide</span>';
         }
