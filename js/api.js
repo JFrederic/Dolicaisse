@@ -1,6 +1,6 @@
 // dolibarr-api.js
 
-const API_BASE = 'http://localhost:8000/public/index.php';
+const API_BASE = window.origin + '/public/index.php';
 
 function apiCall(action, params = {}, method = "GET", body = null) {
     let url = API_BASE + '?action=' + encodeURIComponent(action);
