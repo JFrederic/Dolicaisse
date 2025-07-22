@@ -19,7 +19,7 @@ class Facture extends DolibarrApi {
     }
     // Génération ref
     public function generateInvoiceRef($lastRef) {
-        if (preg_match('/^FACT(\\d{4})(\\d+)$/', $lastRef, $m)) {
+        if (preg_match('/^FA(\\d{4})(\\d+)$/', $lastRef, $m)) {
             $next = str_pad(((int)$m[2]) + 1, strlen($m[2]), '0', STR_PAD_LEFT);
             return 'FA' . $m[1] ."-".$next;
         }
@@ -35,7 +35,7 @@ class Facture extends DolibarrApi {
         $newRef = $this->generateInvoiceRef($lastRef);
         $invoice = [
             'socid' => $data['tiers_id'],
-            'ref' => $newRef,
+            // 'ref' => $newRef,
             'date' => date('Y-m-d'),
             'type' => 0
         ];
@@ -77,8 +77,8 @@ class Facture extends DolibarrApi {
                 }
             }
         }
+        $this->call('POST', "/invoices/$invoiceId/validate", ['status' => 2]);
         // Paiements (identique)
-        var_dump($data['paiements'],!empty($data['paiements']) && is_array($data['paiements']));
         if (!empty($data['paiements']) && is_array($data['paiements'])) {
             foreach ($data['paiements'] as $p) {
                 $mode = $p['mode'] == 'CB' ? 6 : ($p['mode'] == 'Espèces' ? 4 : ($p['mode'] == 'Chèque' ? 2 : 0));
@@ -100,7 +100,7 @@ class Facture extends DolibarrApi {
             }
         }
 
-        $this->call('POST', "/invoices/$invoiceId/validate", ['status' => 2]);
+        
         return ['id' => $invoiceId, 'ref' => $newRef];
     }
 }
