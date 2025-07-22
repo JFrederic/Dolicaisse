@@ -24,7 +24,7 @@
 
           <tbody id="panierItems">
            <tr>
-            <td><span class="designation">SAC A DOS 28X35.5X43CM</span></td>
+            <!-- <td><span class="designation">SAC A DOS 28X35.5X43CM</span></td>
             <td><input type="number" class="qty" min="1" value="1" style="width:60px" onchange="majQtePanier(0, this.value)"></td>
             <td><span class="pu"><b>175.02</b></span></td>
             <td><span class="mtotal"><b>175.02</b></span></td>
@@ -33,7 +33,7 @@
             <td>  
               <input type="hidden" class="idproduit" value="15830">
               <input type="hidden" class="tva" value="0">
-              <button class="btn btn-sm btn-danger" onclick="supprimeProduitPanier(0)">×</button></td>
+              <button class="btn btn-sm btn-danger" onclick="supprimeProduitPanier(0)">×</button></td> -->
 
             </tr>
             <!-- Les lignes du panier seront ajoutées ici dynamiquement -->
