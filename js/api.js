@@ -1,11 +1,11 @@
 // dolibarr-api.js
 
+const API_BASE = 'https://97packs.mobisoft.fr/dolicaisse/public/index.php';
+// if(window.origin == "https://97packs.mobisoft.fr"){
+// }else{
+//     const API_BASE = window.origin + '/public/index.php';
+// }
 
-if(window.origin == "https://97packs.mobisoft.fr"){
-    const API_BASE = 'https://97packs.mobisoft.fr/dolicaisse/public/index.php';
-}else{
-    const API_BASE = window.origin + '/public/index.php';
-}
 
 function apiCall(action, params = {}, method = "GET", body = null) {
     let url = API_BASE + '?action=' + encodeURIComponent(action);
