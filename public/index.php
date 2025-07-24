@@ -11,7 +11,7 @@ require_once '../api/Facture.php';
 header('Content-Type: application/json');
 
 $action = $_GET['action'] ?? null;
-// var_dump($action);die()
+// var_dump($action);die();
 switch ($action) {
     case 'search_tiers':
         $tiers = new Tiers();
@@ -34,6 +34,39 @@ switch ($action) {
         $input = json_decode(file_get_contents('php://input'), true);
         echo json_encode($facture->createFullInvoice($input));
         break;
+    case 'download_facture_pdf':
+        $facture = new Facture();
+        $invoiceId = $_GET['invoiceId'] ?? 0;
+        $file = $facture->getPdf($invoiceId);
+        if ($file && file_exists($file)) {
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: attachment; filename="facture_' . $invoiceId . '.pdf"');
+            readfile($file);
+            // Optionnel : unlink($file); // supprime le fichier temporaire si tu veux
+            exit;
+        } else {
+            http_response_code(404);
+            echo "PDF non trouvé.";
+        }
+        break;
+
+    case 'download_ticket':
+        require_once '../api/Facture.php';
+        $facture = new Facture();
+        $invoiceId = $_GET['invoiceId'] ?? 0;
+        $filename = $facture->generateTicket($invoiceId);
+        if ($filename && file_exists($filename)) {
+            header('Content-Type: text/plain');
+            header('Content-Disposition: attachment; filename="ticket.txt"');
+            readfile($filename);
+            unlink($filename); // Nettoyage fichier temporaire
+            exit;
+        } else {
+            http_response_code(404);
+            echo "Ticket introuvable.";
+        }
+        break;
+
     // etc, ajoute les autres routes ici
     default:
         http_response_code(400);

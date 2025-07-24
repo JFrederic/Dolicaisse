@@ -44,10 +44,6 @@ function validerPaiement() {
 
 async function encaisserFactureAvecPaiements(paiements) {
     const clientId = document.getElementById('selectedClientId').value;
-    // if (!clientId || panier.length === 0) {
-    //     alert('Sélectionnez un client et ajoutez des articles !');
-    //     return;
-    // }
     let panier = $('#panierItems tr').toArray().map(tr => {
         let designation = $(tr).find('.designation').text();
         let qty = parseFloat($(tr).find('.qty').val());
@@ -57,22 +53,22 @@ async function encaisserFactureAvecPaiements(paiements) {
         let remiseEuro = parseFloat($(tr).find('.remise-euro').val()) || 0;
         let id = parseInt($(tr).find('.idproduit').val()) || 0;
         let refproduit = $(tr).find('.refproduit').val() || '';
-        return { designation, qty, pu, mtotal, remise, remiseEuro, id };
+        return { designation, qty, pu, mtotal, remise, remiseEuro, id, refproduit };
     });
 
     let produits = panier.map(p => ({
-        id: p.id || 0, // Assure que l'ID est toujours un nombre
+        id: p.id || 0,
         designation: String(p.designation),
         qty: Number(p.qty),
         pu: Number(p.pu),
         remise: Number(p.remise) || 0,
-        remise_euro: Number(p.remise_euro) || 0,
+        remise_euro: Number(p.remiseEuro) || 0,
         mtotal: Number(p.mtotal),
         ref: String(p.refproduit || ''),
         tva: 8.5
     }));
-    console.log("Produits du panier:", produits);
-    let warehouseId = 2; // Adapter si entrepôt choisi/paramétré
+
+    let warehouseId = 2; // Adapter dynamiquement si besoin
     const resp = await createFacture({
         tiers_id: clientId,
         produits: produits,
@@ -80,14 +76,25 @@ async function encaisserFactureAvecPaiements(paiements) {
         warehouseId: warehouseId
     });
     console.log("Réponse de création de facture:", resp);
+
     if (resp && resp.id) {
-        alert('Facture créée !');
         viderPanier();
         paiements = [];
-        renderPaiementsCourants();
-        // Tu peux aussi réinitialiser les montants/payments UI ici
+        renderPaiementsCourants && renderPaiementsCourants();
+
+        // Affiche le modal de confirmation avec boutons d'impression
+        let modal = new bootstrap.Modal(document.getElementById('modalFactureCreee'));
+        modal.show();
+
+        document.getElementById('btnImprimerTicket').onclick = function() {
+            window.open('http://localhost:8000/public/index.php?action=download_ticket&invoiceId=' + resp.id, '_blank');
+        };
+        document.getElementById('btnImprimerA4').onclick = function() {
+            window.open('http://localhost:8000/public/index.php?action=download_facture_pdf&invoiceId=' + resp.id, '_blank');
+        };
     } else {
-        alert(resp.message || 'Erreur lors de la création de la facture.');
+        alert(resp && resp.message ? resp.message : 'Erreur lors de la création de la facture.');
     }
 }
+
 
