@@ -51,21 +51,19 @@ switch ($action) {
         break;
 
     case 'download_ticket':
-        require_once '../api/Facture.php';
         $facture = new Facture();
         $invoiceId = $_GET['invoiceId'] ?? 0;
-        $filename = $facture->generateTicket($invoiceId);
-        if ($filename && file_exists($filename)) {
-            header('Content-Type: text/plain');
-            header('Content-Disposition: attachment; filename="ticket.txt"');
-            readfile($filename);
-            unlink($filename); // Nettoyage fichier temporaire
+        $ticketTxt = $facture->generateTicketText($invoiceId,['type' => 'windows', 'printer' => 'TM-T81']);
+        if ($ticketTxt) {
+            header('Content-Type: text/plain; charset=UTF-8');
+            header('Content-Disposition: attachment; filename="ticket_' . $invoiceId . '.txt"');
+            echo $ticketTxt;
             exit;
-        } else {
-            http_response_code(404);
-            echo "Ticket introuvable.";
         }
+        http_response_code(404);
+        echo "Ticket introuvable.";
         break;
+
 
     // etc, ajoute les autres routes ici
     default:

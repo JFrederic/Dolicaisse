@@ -26,12 +26,21 @@ async function encaisserFacture() {
         modal.show();
 
         // Mise à jour des boutons
-        document.getElementById('btnImprimerTicket').onclick = function() {
+        document.getElementById('btnImprimerTicket').onclick = function () {
             window.open('http://localhost:8000/public/index.php?action=download_ticket&invoiceId=' + resp.id, '_blank');
         };
-        document.getElementById('btnImprimerA4').onclick = function() {
-            window.open('http://localhost:8000/public/index.php?action=download_facture_pdf&invoiceId=' + resp.id, '_blank');
+
+        document.getElementById('btnImprimerA4').onclick = function () {
+            const url = 'http://localhost:8000/public/index.php?action=download_facture_pdf&invoiceId=' + resp.id;
+            // Crée un lien invisible et déclenche le téléchargement
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "facture_" + resp.id + ".pdf"; // optionnel, le nom sera forcé côté serveur
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => document.body.removeChild(a), 1000);
         };
+
     } else {
         alert(resp.message || 'Erreur lors de la création de la facture.');
     }

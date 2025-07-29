@@ -1,27 +1,27 @@
-<?php 
+<?php
+require 'vendor\autoload.php';
 
-require_once 'api/DolibarrApi.php';
-require_once './load_env.php';
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\EscposImage;
 
+$connector = null;
+$connector = new WindowsPrintConnector('TM-T81'); // Change to your printer name
 
-echo "Début du test\n";
-
-
-try {
-    $api = new DolibarrApi();
-    echo "DolibarrApi instanciée\n";
-   
-
-    // Recherche d'un produit par ref ou nom
-    $searchParams = [
-        'sqlfilters' => "(t.ref:=:'test')" // Remplacez PROD_REF par la référence recherchée
-        // ou par exemple : 'sqlfilters' => "(t.label:=:'NOM_PRODUIT')"
-    ];
-    $products = $api->call('GET', 'products', $searchParams);
-    echo "Résultat de la recherche produit :\n";
-    print_r($products);
-
-} catch (Exception $e) {
-    echo "Erreur Dolibarr : " . $e->getMessage();
+$printer = new Printer($connector);
+$logo = "/public/assets/logo.png";
+if (is_file($logo) && file_exists($logo)) {
+    // $printer->setJustification(Printer::JUSTIFY_CENTER);
+    $img = EscposImage::load($logo);
+    $printer->bitImage($img);
+    $printer->feed(1);
 }
-echo "Fin du test\n";
+// $printer->setJustification(Printer::JUSTIFY_CENTER);
+$content= file_get_contents("public/ticket_111.txt");
+
+$printer->text($content);
+$printer->feed(2);
+$printer->cut(Printer::CUT_PARTIAL);
+$printer->close();

@@ -2,8 +2,8 @@
 // api/DolibarrApi.php
 require_once __DIR__ . '/../load_env.php';
 class DolibarrApi {
-    private $apiKey;
-    private $baseUrl;
+    protected  $apiKey;
+    protected  $baseUrl;
 
     public function __construct() {
         $this->apiKey = $_ENV['DOLIBARR_API_KEY'];

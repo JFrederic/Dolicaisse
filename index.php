@@ -117,14 +117,9 @@ if (empty($_SESSION['entrepot_id'])) {
                                                 </button>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <button type="button" class="btn btn-primary btn-lg w-100 btnCaisse" data-bs-toggle="modal" data-bs-target="#modal-remise" id="modalRemise">
-                                                    Remise
-                                                </button>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <button type="button" class="btn btn-lg w-100 btnCaisse text-white" style="background-color: orange; border: 1px solid orange;" data-bs-toggle="modal" data-bs-target="#modal-divers" id="produitDivers">
-                                                    Divers
+                                            <div class="col-12">
+                                                <button type="button" class="btn btn-warning btn-lg w-100 btnCaisse" data-bs-toggle="modal" data-bs-target="#modal-devis" id="modalDevis">
+                                                    Devis
                                                 </button>
                                             </div>
 
