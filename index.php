@@ -90,7 +90,7 @@ if (empty($_SESSION['entrepot_id'])) {
                                                 </button>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="button" class="btn btn-primary btn-lg w-100 btnCaisse" id="paiementCB" onclick="showModalPaiement('CB')" >
+                                                <button type="button" class="btn btn-primary btn-lg w-100 btnCaisse" id="paiementCB" onclick="showModalPaiement('CB')">
                                                     CB
                                                 </button>
                                             </div>
@@ -116,18 +116,23 @@ if (empty($_SESSION['entrepot_id'])) {
                                                     Retour article
                                                 </button>
                                             </div>
-
-                                            <div class="col-12">
-                                                <button type="button" class="btn btn-warning btn-lg w-100 btnCaisse" data-bs-toggle="modal" data-bs-target="#modal-devis" id="modalDevis">
-                                                    Devis
-                                                </button>
-                                            </div>
-
                                             <div class="col-12">
                                                 <button type="button" class="btn btn-info btn-lg w-100 btnCaisse text-white" onclick="ticketAvoir()">
                                                     Avoir
                                                 </button>
                                             </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-warning btn-lg w-100 btnCaisse" data-bs-toggle="modal" data-bs-target="#modal-devis" id="modalDevis">
+                                                    Devis
+                                                </button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-danger btn-lg w-100 btnCaisse" data-bs-toggle="modal" data-bs-target="#journalFacturesModal" id="modalJournal">
+                                                    Journal
+                                                </button>
+                                            </div>
+
+
                                         </div>
                                     </div>
 

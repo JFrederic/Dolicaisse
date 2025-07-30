@@ -136,7 +136,8 @@ function addProduitAuPanier(produit) {
             id: produit.id,
             label: produit.label,
             ref: produit.ref,
-            pu: parseFloat(produit.price_ttc || produit.price),
+            pu: parseFloat((produit.price * (1 + produit.tva_tx / 100)).toFixed(2)),
+            tva: produit.tva_tx,
             qty: 1,
             remise: 0,
             remise_euro: 0
@@ -197,4 +198,3 @@ function supprimeProduitPanier(idx) {
     renderPanier();
 }
 
-// renderPanier();

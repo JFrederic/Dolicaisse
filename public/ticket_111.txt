@@ -11,8 +11,8 @@ Date: 28/07/2025 - 01:00   N: FA2507-0048
 
 ARTICLE(S)            QTE  PU     MONTANT
 ------------------------------------------
-(0995110495610)SAC A DOS 
-28X35.5X43CMx         1 x 175,02   189,90
+(00AI02-CTN)INSECTICIDE SPECIAL RAMPANTS 
+750ML (1CTN)(12PCS)   1 x 175,02 189,90
 1 ARTICLE
 ------------------------------------------
 TOTAL TTC:                          189,90

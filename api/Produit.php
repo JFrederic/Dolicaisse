@@ -9,7 +9,7 @@ class Produit extends DolibarrApi
     {
         // On commence par chercher par ref (code-barre)
         $resByRef = $this->call('GET', '/products', [], [
-            'sqlfilters' => "(t.ref:=:'$search')"
+            'sqlfilters' => "(t.ref:=:'$search' OR t.barcode:=:'$search')"
         ]);
         if (!empty($resByRef)) return $resByRef;
         // Si aucun résultat, on cherche par nom (label) avec LIKE et limite 20

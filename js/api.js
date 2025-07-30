@@ -67,6 +67,15 @@ function getCaisseCloture() {
     return apiCall('cloture_caisse');
 }
 
+/** 9. Récupération du journal des factures sur une période */
+function getJournalFactures(dateDebut, dateFin) {
+    return apiCall('journal_factures', {
+        date_debut: dateDebut,
+        date_fin: dateFin
+    });
+}
+
+
 /** --- EXEMPLE D’UTILISATION (async/await) --- */
 
 // Exemple : Recherche de client

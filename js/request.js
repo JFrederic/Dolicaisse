@@ -64,7 +64,7 @@ document.getElementById('searchClientBtn').addEventListener('click', async funct
 document.getElementById('formCreateClient').addEventListener('submit', async function(e){
     e.preventDefault();
     const name = document.getElementById('newClientName').value.trim();
-    const firstname = document.getElementById('newClientFirstname').value.trim();
+    // const firstname = document.getElementById('newClientFirstname').value.trim();
     const phone = document.getElementById('newClientPhone').value.trim();
     const email = document.getElementById('newClientEmail').value.trim();
     const address = document.getElementById('newClientAddress').value.trim();
@@ -129,3 +129,42 @@ document.getElementById('formCreateClient').addEventListener('submit', async fun
 //         return '';
 //     }
 // });
+
+
+
+async function handleFactureSearch() {
+    const ref = document.getElementById('factureNumber').value.trim();
+    const resultDiv = document.getElementById('factureResult');
+    resultDiv.innerHTML = "Recherche...";
+    const facture = await searchFacture(ref);
+    console.log("Résultat de la recherche de facture :", facture);
+    if (facture && facture.length > 0) {
+        const f = facture[0];
+        var ttc = f.total_ttc || 0;
+        ttc = parseFloat(ttc).toFixed(2); // Assure que c
+        resultDiv.innerHTML = `
+            <div class="alert alert-success p-2">
+                <b>Facture trouvée :</b><br>
+                Ref : ${f.ref}<br>
+                Client : ${f.socname || ''}<br>
+                Total TTC : ${ttc || ''} €<br>
+                <a href="http://localhost:8000/public/index.php?action=search_download_facture_pdf&invoiceId=${f.id}" target="_blank" class="btn btn-sm btn-secondary mt-2">
+                    Télécharger le PDF
+                </a>
+            </div>
+        `;
+    } else {
+        resultDiv.innerHTML = `<div class="alert alert-danger p-2">Aucune facture trouvée pour cette référence.</div>`;
+    }
+}
+
+document.querySelector('#factureModal .btn.btn-primary').addEventListener('click', handleFactureSearch);
+
+document.getElementById('factureNumber').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        handleFactureSearch();
+    }
+});
+
+

@@ -9,6 +9,7 @@ class Tiers extends DolibarrApi
     private function generateCustomerCode($name, $firstname, $zip)
     {
         // Nettoyage : retire les accents, passe en majuscule, retire tout sauf lettres
+        
         $name = strtoupper(preg_replace('/[^A-Za-z]/', '', self::normalize($name)));
         $firstname = strtoupper(preg_replace('/[^A-Za-z]/', '', self::normalize($firstname)));
         $zip = substr($zip, 0, 5);

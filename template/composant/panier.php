@@ -1,7 +1,8 @@
 <div class="card caddie">
   <div class="card-header">
     <h5 class="card-title"> <i class="fa-solid fa-cart-shopping"></i> Caddie 1</h5>
-    <button type="button" class="btn btn-danger btnMultiplePanier" >Client Suivant</button>
+    <button type="button" class="btn btn-danger btnMultiplePanier" onclick="changerDePanier()">Client Suivant</button>
+
   </div>
   <div class="card-body">
     <div class="row">

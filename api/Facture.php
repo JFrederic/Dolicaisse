@@ -25,7 +25,7 @@ class Facture extends DolibarrApi
     public function search($search)
     {
         return $this->call('GET', '/invoices', [], [
-            'sqlfilters' => "(f.ref:=:'$search' OR f.societe_tiers_nom:=:'$search' OR f.societe_tiers_prenom:=:'$search')"
+            'sqlfilters' => "(t.ref:=:'$search')"
         ]);
     }
     // Dernière ref
@@ -84,6 +84,38 @@ class Facture extends DolibarrApi
         }
     }
 
+    public function getFacturesByPeriode($dateDebut, $dateFin)
+    {
+        $params = [
+            'sortfield' => 'date',
+            'sortorder' => 'desc',
+            'limit' => 1000,
+            'sqlfilters' => "(f.date>='" . $dateDebut . "' AND f.date<='" . $dateFin . "')"
+        ];
+        $factures = $this->call('GET', '/invoices', [], $params);
+        $result = [];
+        foreach ($factures as $f) {
+            $heure = isset($f['date']) ? date('H:i', strtotime($f['date'])) : '';
+            // Exemple: on suppose $f['paiement'] (mode) existe, sinon adapte selon ton schéma !
+            $couleur = "";
+            $mode = strtolower($f['paiement'] ?? $f['mode_reglement_code'] ?? '');
+            if ($mode == "cb" || $mode == "carte" || $mode == "card") $couleur = "#7FFF7F"; // vert
+            elseif ($mode == "especes" || $mode == "cash") $couleur = "#FFBF60"; // orange
+            // ... adapte ici selon tes données
+
+            $result[] = [
+                'ref' => $f['ref'] ?? '',
+                'date' => isset($f['date']) ? date('d/m/Y', strtotime($f['date'])) : '',
+                'heure' => $heure,
+                'ttc' => $f['total_ttc'] ?? '',
+                'client' => $f['societe_tiers_nom'] ?? '',
+                'paiement' => $f['paiement'] ?? $f['mode_reglement_code'] ?? '',
+                'color' => $couleur
+            ];
+        }
+        return $result;
+    }
+
 
 
 
@@ -97,11 +129,11 @@ class Facture extends DolibarrApi
         $facture = $this->call('GET', "/invoices/$invoiceId");
         $payments = $this->call('GET', "/invoices/$invoiceId/payments");
         // var_dump($facture, $payments);die();
-        if($payments[0]['type']=="LIQ"){
+        if ($payments[0]['type'] == "LIQ") {
             $mode_paiement = "Especes";
-        }else if($payments[0]['type']=="CB"){
+        } else if ($payments[0]['type'] == "CB") {
             $mode_paiement = "CB";
-        }else{
+        } else {
             $mode_paiement = "Chèque";
         }
         $lines   = $this->call('GET', "/invoices/$invoiceId/lines");
@@ -152,8 +184,8 @@ class Facture extends DolibarrApi
         $content .= str_repeat("-", $width) . "\n";
         // Total aligné à droite
         $content .= str_pad("TOTAL TTC:", $width - 10, " ", STR_PAD_LEFT) . str_pad(number_format($facture['total_ttc'], 2, ',', ' '), 10, " ", STR_PAD_LEFT) . "\n";
-        
-        
+
+
         $content .=  $mode_paiement . str_pad(number_format($facture['total_ttc'], 2, ',', ' '), $width - 2, " ", STR_PAD_LEFT) . "\n\n";
 
         // Section TVA, titres centrés
@@ -229,7 +261,7 @@ class Facture extends DolibarrApi
         } else {
             $printer->cut(Printer::CUT_PARTIAL);
         }
-        $printer -> close();
+        $printer->close();
         return $content;
     }
 
@@ -269,6 +301,7 @@ class Facture extends DolibarrApi
                 $this->call('POST', "/invoices/$invoiceId/lines", [
                     "fk_product" => $prod['id'],
                     "fk_facture" => $invoiceId,
+                    "default_lang" => "fr_FR",
                     "libelle" => $prod['designation'],
                     "desc" => $prod['designation'],
                     "product_label" => $prod['designation'],

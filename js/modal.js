@@ -6,11 +6,17 @@ clientModal.addEventListener('shown.bs.modal', () => {
     clientName.focus()
 })
 
+document.getElementById('factureModal').addEventListener('shown.bs.modal', () => {
+    $('#factureNumber').focus().select();
+})
+
 // Affiche le formulaire de création, cache la recherche
 document.getElementById('showCreateClient').addEventListener('click', function () {
     document.querySelector('form').style.display = 'none'; // cache le formulaire de recherche
     document.getElementById('create-client-form').style.display = '';
 });
+
+
 
 // Annuler création → on revient à la recherche
 document.getElementById('cancelCreateClient').addEventListener('click', function () {
@@ -65,5 +71,25 @@ function showModalPaiement(modeDefaut) {
 }
 
 
-
+// devis
+document.getElementById('addProduitRow').addEventListener('click', function() {
+  var container = document.getElementById('devisProduitsContainer');
+  var row = document.createElement('div');
+  row.className = 'row mb-2 devisProduitRow';
+  row.innerHTML = `
+    <div class="col">
+      <input type="text" class="form-control" name="produit_ref[]" placeholder="Réf. produit/service" required>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" name="produit_libelle[]" placeholder="Libellé" required>
+    </div>
+    <div class="col">
+      <input type="number" class="form-control" name="produit_qty[]" placeholder="Quantité" min="1" value="1" required>
+    </div>
+    <div class="col">
+      <input type="number" class="form-control" name="produit_pu[]" placeholder="Prix Unitaire" min="0" step="0.01" required>
+    </div>
+  `;
+  container.appendChild(row);
+});
 

@@ -13,6 +13,7 @@
               <label for="factureNumber" class="form-label">Numero de facture</label>
               <div class="col-10">
                 <input type="text" class="form-control" id="factureNumber" placeholder="Entrez le numero de facture">
+                <div id="factureResult" class="mt-2"></div> <!-- Résultat ici -->
               </div>
               <div class="col-2">
                 <button type="button" class="btn btn-primary">Recherche</button>

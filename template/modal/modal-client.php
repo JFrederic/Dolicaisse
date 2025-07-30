@@ -13,7 +13,7 @@
           <form autocomplete="off" onsubmit="return false;">
             <div class="row align-items-end">
               <div class="col-8">
-                <label for="clientName" class="form-label">Nom ou prénom du client</label>
+                <label for="clientName" class="form-label">Raison Sociale du client</label>
                 <input type="text" class="form-control" id="clientName" placeholder="Tapez un nom ou un prénom...">
                 <!-- Champ caché pour stocker l'id du client sélectionné -->
               </div>
@@ -35,13 +35,13 @@
   <form id="formCreateClient" autocomplete="off">
     <div class="row mb-2">
       <div class="col-md-6">
-        <label for="newClientName" class="form-label">Nom</label>
+        <label for="newClientName" class="form-label">Raison Sociale</label>
         <input type="text" class="form-control" id="newClientName" required>
       </div>
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <label for="newClientFirstname" class="form-label">Prénom</label>
         <input type="text" class="form-control" id="newClientFirstname">
-      </div>
+      </div> -->
     </div>
     <div class="row mb-2">
       <div class="col-md-6">
