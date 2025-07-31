@@ -74,6 +74,12 @@ function getJournalFactures(dateDebut, dateFin) {
         date_fin: dateFin
     });
 }
+/** 10. Création de devis */
+function createDevis(data) {
+    // data = {tiers_id, produits: [...]}
+    return apiCall('create_devis', {}, "POST", data);
+}
+
 
 
 /** --- EXEMPLE D’UTILISATION (async/await) --- */

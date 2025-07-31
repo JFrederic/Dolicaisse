@@ -39,6 +39,8 @@ files/
 *.bak
 *.swp
 *.tmp
-
+#js files
+/api/login.js
+/api/api.js
 # Composer lock file (optional, if you don't want to commit it)
 /composer.lock

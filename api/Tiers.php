@@ -28,7 +28,7 @@ class Tiers extends DolibarrApi
     public function search($search)
     {
         return $this->call('GET', '/thirdparties', [], [
-            'sqlfilters' => "(t.nom:=:'$search')"
+            'sqlfilters' => "(t.nom:like:'%$search%')"
         ]);
     }
 

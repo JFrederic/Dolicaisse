@@ -10,5 +10,6 @@
     <script src="js/creer-facture.js"></script>
     <script src="js/gestion-paiements.js"></script>
     <script src="js/journal.js"></script>
+    <script src="js/devis.js"></script>
     <script src="js/login.js"></script>
 </footer>

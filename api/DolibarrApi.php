@@ -31,9 +31,11 @@ class DolibarrApi {
         if ($method == 'POST' || $method == 'PUT' || $method == 'PATCH') {
             $options[CURLOPT_POSTFIELDS] = json_encode($data);
         }
-
+        
         $ch = curl_init();
         curl_setopt_array($ch, $options);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
         $response = curl_exec($ch);
         $err = curl_error($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);

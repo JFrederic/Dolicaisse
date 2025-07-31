@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once 'template/header.php';
-require_once 'template/includes.php';
-
 
 if (empty($_SESSION['entrepot_id'])) {
     header('Location: /connexion.php');
     exit;
 }
+
+require_once 'template/header.php';
+require_once 'template/includes.php';
 ?>
 
 <body class="min-h-screen bg-gray-100">

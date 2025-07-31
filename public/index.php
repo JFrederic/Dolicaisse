@@ -89,7 +89,7 @@ switch ($action) {
     case 'create_devis':
         $devis = new Devis();
         $data = json_decode(file_get_contents('php://input'), true);
-        $result = $devis->create($data);
+        $result = $devis->createFullDevis($data);
         echo json_encode($result);
         break;
 

@@ -43,28 +43,40 @@
             <form id="createDevisForm">
               <div class="mb-3">
                 <label for="devisClient" class="form-label">Client (ID ou nom)</label>
-                <input type="text" class="form-control" id="devisClient" placeholder="ID ou nom du client" required>
+                <input type="text" class="form-control" id="devisClient" placeholder="Nom du client" autocomplete="off" required>
+                <input type="hidden" id="devisClientId">
+                <ul id="suggestionsClient" class="list-group position-absolute w-100" style="z-index:9999; max-height:200px; overflow:auto; display:none"></ul>
+
+
               </div>
               <div class="mb-3">
                 <label for="devisDate" class="form-label">Date du devis</label>
                 <input type="date" class="form-control" id="devisDate" value="<?php echo date('Y-m-d'); ?>" required>
               </div>
               <div id="devisProduitsContainer">
-                <label class="form-label">Produits / Services</label>
-                <div class="row mb-2 devisProduitRow">
-                  <div class="col">
-                    <input type="text" class="form-control" name="produit_ref[]" placeholder="Réf. produit/service" required>
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control" name="produit_libelle[]" placeholder="Libellé" required>
-                  </div>
-                  <div class="col">
-                    <input type="number" class="form-control" name="produit_qty[]" placeholder="Quantité" min="1" value="1" required>
-                  </div>
-                  <div class="col">
-                    <input type="number" class="form-control" name="produit_pu[]" placeholder="Prix Unitaire" min="0" step="0.01" required>
-                  </div>
+                <label class="form-label">Ajouter un produit</label>
+                <div class="input-group mb-2 position-relative">
+                  <input type="text" class="form-control" id="produitSearch" placeholder="Référence ou nom produit">
+                  <ul id="suggestionsProduit" class="list-group position-absolute w-100" style="z-index:10000; max-height:200px; overflow:auto; display:none"></ul>
+                  <button type="button" class="btn btn-outline-primary" id="addProduitBtn">Ajouter</button>
                 </div>
+              </div>
+              <div id="produitsDevisList" class="mb-3">
+                <!-- Liste des produits sélectionnés pour le devis -->
+                <table class="table table-bordered align-middle" id="tableProduitsDevis">
+                  <thead>
+                    <tr>
+                      <th>Réf.</th>
+                      <th>Libellé</th>
+                      <th>Quantité</th>
+                      <th>Prix Unitaire</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- lignes JS -->
+                  </tbody>
+                </table>
               </div>
               <button type="button" class="btn btn-outline-secondary btn-sm mb-3" id="addProduitRow">+ Ajouter une ligne</button>
               <div>
@@ -81,4 +93,3 @@
     </div>
   </div>
 </div>
-

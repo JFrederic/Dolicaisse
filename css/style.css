@@ -5,6 +5,12 @@
    padding: 0;
 
  }
+#suggestionsClient {
+  cursor: pointer;
+}
+#suggestionsClient li.active, #suggestionsClient li:hover {
+  background: #e0e0e0;
+}
 
  .container-fluid {
    /* min-height: 100vh; */

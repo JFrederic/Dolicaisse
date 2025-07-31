@@ -25,6 +25,7 @@ class Devis extends DolibarrApi
     $proposalId = $resp;
 
     // Ajout des lignes produits/services
+    var_dump($data['produits']);die();
     if (!empty($data['produits']) && is_array($data['produits'])) {
         foreach ($data['produits'] as $prod) {
             $this->call('POST', "/proposals/$proposalId/lines", [
